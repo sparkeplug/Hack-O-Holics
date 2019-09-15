@@ -1,0 +1,32 @@
+@import "variables";
+
+:host {
+  .upload {
+    display: flex;
+    position: absolute;
+    top: 0;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5em;
+    box-sizing: border-box;
+    &__msg {
+      font-size: 3em;
+      color: $primary;
+      font-family: $font-primary;
+    }
+    &__btn {
+      --fab-dimension: 7em;
+      height: var(--fab-dimension);
+      width: var(--fab-dimension);
+      background-color: $white;
+      &-icon {
+        --fab-icon-dimension: 5em;
+        height: var(--fab-icon-dimension);
+        width: var(--fab-icon-dimension);
+      }
+    }
+  }
+}

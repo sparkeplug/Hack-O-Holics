@@ -30,7 +30,7 @@ export class AppComponent {
       )
     );
     this.matIconRegistry.addSvgIcon(
-      `uploadFile`,
+      `upload`,
       this.domSanitizer.bypassSecurityTrustResourceUrl(
         `../assets/images/upload-file.svg`
       )

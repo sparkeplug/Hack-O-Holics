@@ -1,0 +1,120 @@
+@import "~@angular/material/theming";
+
+$md-hkprimary: (
+  50: #e6ebf5,
+  100: #c2cde5,
+  200: #99abd4,
+  300: #7089c2,
+  400: #5170b5,
+  500: #3257a8,
+  600: #2d4fa0,
+  700: #264697,
+  800: #1f3c8d,
+  900: #132c7d,
+  A100: #b2c1ff,
+  A200: #7f98ff,
+  A400: #4c6fff,
+  A700: #325bff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #ffffff,
+    A700: #ffffff
+  )
+);
+
+$md-hkaccent: (
+  50: #e7f4f2,
+  100: #c3e4df,
+  200: #9bd3c9,
+  300: #72c1b3,
+  400: #54b3a3,
+  500: #36a693,
+  600: #309e8b,
+  700: #299580,
+  800: #228b76,
+  900: #167b64,
+  A100: #b2ffec,
+  A200: #7fffdf,
+  A400: #4cffd3,
+  A700: #32ffcc,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
+  )
+);
+
+$md-hkwarn: (
+  50: #fbe8ea,
+  100: #f5c5ca,
+  200: #ee9fa6,
+  300: #e77982,
+  400: #e15c68,
+  500: #dc3f4d,
+  600: #d83946,
+  700: #d3313d,
+  800: #ce2934,
+  900: #c51b25,
+  A100: #fffafa,
+  A200: #ffc7c9,
+  A400: #ff9499,
+  A700: #ff7a80,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
+  )
+);
+//FONTS
+
+$font-primary: "Roboto", sans-serif;
+$font-secondary: "Roboto Condensed", sans-serif;
+
+// COLOR VARIABLES
+
+$app-primary: mat-palette($md-hkprimary);
+$app-accent: mat-palette($md-hkaccent);
+$app-warn: mat-palette($md-hkwarn);
+
+$primary: mat-color($app-primary);
+$accent: mat-color($app-accent);
+$warn: mat-color($app-warn);
+$grey: #969696;
+$yellow: #f4cf70;
+$black: #000000;
+$white: #ffffff;
+$purple: #8b3d88;
+$pink: #e5a9c9;

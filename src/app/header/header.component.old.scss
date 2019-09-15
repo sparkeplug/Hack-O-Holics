@@ -1,0 +1,70 @@
+@import "variables";
+
+:host {
+  display: block;
+  position: relative;
+  height: max-content;
+  width: 100%;
+  z-index: 10000;
+  .header {
+    display: flex;
+    position: relative;
+    height: 5em;
+    width: 100%;
+    padding: 0.5em 5em;
+    box-sizing: border-box;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .brand {
+      display: flex;
+      position: relative;
+      height: 100%;
+      width: max-content;
+      justify-content: center;
+      align-items: center;
+      &__text {
+        font-family: $font-primary;
+      }
+      &__img {
+        --brand-dimension: 3em;
+        display: inline-block;
+        position: relative;
+        height: var(--brand-dimension);
+        width: var(--brand-dimension);
+        margin: 0 0.5em;
+        animation-name: pulse;
+        animation-duration: 1.5s;
+        animation-iteration-count: infinite;
+      }
+    }
+    &__menu {
+      display: flex;
+      position: relative;
+      height: 100%;
+      width: max-content;
+      list-style: none;
+      justify-content: center;
+      align-items: center;
+      &-item {
+        &-btn {
+          font-size: 1.25em;
+          font-family: $font-primary;
+          font-weight: bolder;
+        }
+      }
+    }
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(0.85, 0.8);
+  }
+  to {
+    transform: scale(1, 1);
+  }
+}

@@ -13,6 +13,7 @@ import { Observable, Subject } from "rxjs";
   providedIn: "root"
 })
 export class PredictService {
+  dashboardData;
   constructor(private http: HttpClient) {}
 
   bulkUpload(fileToUpload) {
@@ -76,12 +77,16 @@ export class PredictService {
     return status;
   }
 
-  singleUpload() {
+  singleUpload(data) {
     const key = "predict";
     const url = ENDPOINTS[key]["endpoint"];
     const method = ENDPOINTS[key]["method"];
-    const headers = ENDPOINTS[key]["headers"];
-    return this.http[method](url, headers);
+    // const JSONData = JSON.stringify(data);
+    let header: HttpHeaders = new HttpHeaders().set(
+      "Content-Type",
+      "application/json"
+    );
+    return this.http[method](url, data, { headers: header });
   }
 
   graphs() {

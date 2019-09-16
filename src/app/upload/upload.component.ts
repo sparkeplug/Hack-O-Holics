@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, Renderer2 } from "@angular/core";
 import * as XLSX from "xlsx";
 import { PredictService } from "./../services/predict.service";
+import { NgxUiLoaderService } from "ngx-ui-loader";
+import { Router } from "@angular/router";
 @Component({
   selector: "app-upload",
   templateUrl: "./upload.component.html",
@@ -15,7 +17,9 @@ export class UploadComponent implements OnInit {
 
   constructor(
     private predictService: PredictService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private ngxService: NgxUiLoaderService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -34,14 +38,20 @@ export class UploadComponent implements OnInit {
 
   predictSingleCase() {
     const payload = this.unformattedStringToPredict;
-    if(payload !== '') {
-      this.predictService.singleUpload().subscribe(
+    if (payload !== "") {
+      const data = {
+        Business_Description: payload
+      };
+      this.ngxService.start();
+      this.predictService.singleUpload(data).subscribe(
         resp => {
-          console.log("SINGLE RESP ",resp);
-          
+          this.predictService.dashboardData = [resp];
+          this.ngxService.stop();
+          this.router.navigate(["/dashboard"]);
         },
         err => {
-          console.log("SINGLE ERR ",err);
+          this.ngxService.stop();
+          console.error("PREDICT SINGLE CASE ERROR -> ", err);
         }
       );
     }
@@ -60,26 +70,17 @@ export class UploadComponent implements OnInit {
     return false;
   }
 
-  // unicodeStringToTypedArray(s) {
-  //   var escstr = encodeURIComponent(s);
-  //   var binstr = escstr.replace(/%([0-9A-F]{2})/g, (match, p1) => {
-  //     return String.fromCharCode("0x" + p1);
-  //   });
-  //   var ua = new Uint8Array(binstr.length);
-  //   Array.prototype.forEach.call(binstr, function(ch, i) {
-  //     ua[i] = ch.charCodeAt(0);
-  //   });
-  //   return ua;
-  // }
-
   onFileAdded() {
     var reader = new FileReader();
     this.fileToUpload = this.file.nativeElement.files[0];
+    this.ngxService.start();
     this.predictService.bulkUpload(this.fileToUpload).subscribe(
       data => {
+        this.ngxService.stop();
         console.log("FILE -> ", data);
       },
       err => {
+        this.ngxService.stop();
         var anchor = this.renderer.createElement("a");
         this.renderer.setAttribute(
           anchor,
@@ -90,21 +91,6 @@ export class UploadComponent implements OnInit {
         this.renderer.setAttribute(anchor, "download", "predictResult.csv");
 
         anchor.click();
-        // console.log("ERR -> ", err);
-        // var data = btoa(this.decode_utf8(err["error"]["text"]));
-        // var workbook = XLSX.read(data, { type: "base64" });
-        // debugger;
-        // let d = this.unicodeStringToTypedArray(err["error"]["text"]);
-        // let d = btoa(err["error"]["text"]);
-        // debugger;
-        // let arr = new Array();
-        // for (var i = 0; i != d.length; ++i) arr[i] = String.fromCharCode(d[i]);
-        // // var bstr = arr.join("");
-        // var data = new Uint8Array(arr);
-
-        /* Call XLSX */
-        // var workbook = XLSX.read(d, { type: "base64" });
-        // XLSX.writeFile(workbook, "predictedAnalysis.xlsx");
       }
     );
   }

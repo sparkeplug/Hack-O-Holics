@@ -1,0 +1,40 @@
+@import "variables";
+
+:host {
+  .team {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    padding: 5em 2em 2em 2em;
+    box-sizing: border-box;
+    &__msg {
+      color: $yellow;
+      font-family: $font-secondary;
+      font-size: 9em;
+    }
+    &__icons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      width: 40%;
+      .team__icon {
+        display: inline-block;
+        position: relative;
+      }
+    }
+    &__members {
+      display: block;
+      position: relative;
+      list-style: none;
+      .team__member {
+        font-family: $font-primary;
+      }
+    }
+  }
+}

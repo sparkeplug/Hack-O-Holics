@@ -1,4 +1,4 @@
-const API_URL = "https://83d30fa3.ngrok.io/api";
+const API_URL = "http://b7d86c57.ngrok.io/api";
 const ENDPOINTS = {
   "bulk-upload": {
     endpoint: `${API_URL}/bulk_upload`,
@@ -12,7 +12,7 @@ const ENDPOINTS = {
     endpoint: `${API_URL}/predict`,
     method: "post",
     headers: {
-      "Content-Type": "multipart/form-data"
+      "Content-Type": "application/json"
     }
   },
   visualization: {

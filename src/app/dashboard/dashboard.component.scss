@@ -5,13 +5,14 @@
     top: 0;
     height: 100vh;
     width: 100vw;
-    padding-top: 5em;
+    padding: 6.5em 2em 2em 2em;
     box-sizing: border-box;
     &__result {
       display: block;
       position: relative;
       height: 100%;
       width: 100%;
+      overflow: auto;
       table {
         width: 100%;
       }

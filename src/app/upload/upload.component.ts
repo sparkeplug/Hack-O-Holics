@@ -1,32 +1,45 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import * as XLSX from "xlsx";
+import { PredictService } from "./../services/predict.service";
+import { log } from "util";
+import { saveAs } from "file-saver";
 @Component({
   selector: "app-upload",
   templateUrl: "./upload.component.html",
   styleUrls: ["./upload.component.scss"]
 })
 export class UploadComponent implements OnInit {
-  arrayBuffer: any;
-  file: File;
+  @ViewChild("file", { static: false }) file;
+  public files: Set<File> = new Set();
+  public fileToUpload: { [key: string]: File };
+  progress;
+  canBeClosed = true;
+  primaryButtonText = "Upload";
+  showCancelButton = true;
+  uploading = false;
+  uploadSuccessful = false;
 
-  constructor() {}
+  constructor(private predictService: PredictService) {}
 
   ngOnInit() {}
 
-  Upload() {
-    let fileReader = new FileReader();
-    fileReader.onload = e => {
-      this.arrayBuffer = fileReader.result;
-      var data = new Uint8Array(this.arrayBuffer);
-      var arr = new Array();
-      for (var i = 0; i != data.length; ++i)
-        arr[i] = String.fromCharCode(data[i]);
-      var bstr = arr.join("");
-      var workbook = XLSX.read(bstr, { type: "binary" });
-      var first_sheet_name = workbook.SheetNames[0];
-      var worksheet = workbook.Sheets[first_sheet_name];
-      console.log(XLSX.utils.sheet_to_json(worksheet, { raw: true }));
-    };
-    fileReader.readAsArrayBuffer(this.file);
+  addFiles() {
+    this.file.nativeElement.click();
+    return false;
+  }
+
+  onFileAdded() {
+    var reader = new FileReader();
+    this.fileToUpload = this.file.nativeElement.files[0];
+    this.predictService.bulkUpload(this.fileToUpload).subscribe(
+      data => {
+        console.log("FILE -> ", data);
+      },
+      err => {
+        console.log("ERR -> ", err);
+        let blob = err["error"]["text"].blob();
+        saveAs(blob, "fileName.xlsx");
+      }
+    );
   }
 }

@@ -41,5 +41,11 @@ export class AppComponent {
         `../assets/images/ui.svg`
       )
     );
+    this.matIconRegistry.addSvgIcon(
+      `predict`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        `../assets/images/predict.svg`
+      )
+    );
   }
 }

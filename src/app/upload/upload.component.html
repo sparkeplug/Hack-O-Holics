@@ -1,7 +1,28 @@
 <div class="upload">
-  <h1 class="upload__msg">Select file to upload</h1>
-  <input type="file" id="imgupload" style="display:none" />
-  <button mat-fab class="upload__btn" (click)>
-    <mat-icon class="upload__btn-icon" svgIcon="upload"></mat-icon>
-  </button>
+  <div class="left">
+    <!-- <span class="smoke"></span> -->
+    <h1 class="upload__msg">Enter data to predict</h1>
+    <form action="">
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Enter input data"></textarea>
+      </mat-form-field>
+      <button mat-fab class="upload__btn">
+        <mat-icon class="upload__btn-icon" svgIcon="predict"></mat-icon>
+      </button>
+    </form>
+  </div>
+  <div class="divider">
+    <!-- <img src="./assets/images/divide-mathematical-sign.svg" alt="" /> -->
+    <h1>OR</h1>
+  </div>
+  <div class="right">
+    <!-- <span class="smoke"></span> -->
+    <h1 class="upload__msg">Select file to upload</h1>
+    <form>
+      <input type="file" #file style="display: none" (change)="onFileAdded()" />
+      <button mat-fab class="upload__btn" (click)="addFiles()">
+        <mat-icon class="upload__btn-icon" svgIcon="upload"></mat-icon>
+      </button>
+    </form>
+  </div>
 </div>

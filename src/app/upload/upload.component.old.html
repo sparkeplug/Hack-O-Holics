@@ -1,6 +1,56 @@
 <div class="upload">
-  <h1 class="upload__msg">Select file to upload</h1>
-  <button mat-fab class="upload__btn">
-    <mat-icon class="upload__btn-icon" svgIcon="cloud"></mat-icon>
-  </button>
+  <div class="left">
+    <!-- <span class="smoke"></span> -->
+    <h1 class="upload__msg">Enter data to predict</h1>
+    <form action="">
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Enter input data"></textarea>
+      </mat-form-field>
+      <button mat-fab class="upload__btn">
+        <mat-icon class="upload__btn-icon" svgIcon="predict"></mat-icon>
+      </button>
+    </form>
+  </div>
+  <div class="divider">
+    <!-- <img src="./assets/images/divide-mathematical-sign.svg" alt="" /> -->
+    <h1>OR</h1>
+  </div>
+  <div class="right">
+    <!-- <span class="smoke"></span> -->
+    <h1 class="upload__msg">Select file to upload</h1>
+    <form>
+      <input type="file" #file style="display: none" (change)="onFileAdded()" />
+      <button mat-fab class="upload__btn" (click)="addFiles()">
+        <mat-icon class="upload__btn-icon" svgIcon="upload"></mat-icon>
+      </button>
+    </form>
+    <!-- This is the content of the dialog, containing a list of the files to upload -->
+    <mat-dialog-content fxFlex>
+      <mat-list>
+        <mat-list-item *ngFor="let file of files">
+          <h4 mat-line>{{ file.name }}</h4>
+          <mat-progress-bar
+            *ngIf="progress"
+            mode="determinate"
+            [value]="progress[file.name].progress | async"
+          ></mat-progress-bar>
+        </mat-list-item>
+      </mat-list>
+    </mat-dialog-content>
+
+    <!-- This are the actions of the dialog, containing the primary and the cancel button-->
+    <mat-dialog-actions class="actions">
+      <button *ngIf="showCancelButton" mat-button mat-dialog-close>
+        Cancel
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!canBeClosed"
+        (click)="closeDialog()"
+      >
+        {{ primaryButtonText }}
+      </button>
+    </mat-dialog-actions>
+  </div>
 </div>

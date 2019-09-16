@@ -76,7 +76,19 @@ export class PredictService {
     return status;
   }
 
-  singleUpload() {}
+  singleUpload() {
+    const key = "predict";
+    const url = ENDPOINTS[key]["endpoint"];
+    const method = ENDPOINTS[key]["method"];
+    const headers = ENDPOINTS[key]["headers"];
+    return this.http[method](url, headers);
+  }
 
-  graphs() {}
+  graphs() {
+    const key = "visualization";
+    const url = ENDPOINTS[key]["endpoint"];
+    const method = ENDPOINTS[key]["method"];
+    const headers = ENDPOINTS[key]["headers"];
+    return this.http[method](url, headers);
+  }
 }

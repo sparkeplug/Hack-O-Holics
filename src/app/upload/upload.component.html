@@ -2,11 +2,19 @@
   <div class="left">
     <!-- <span class="smoke"></span> -->
     <h1 class="upload__msg">Enter data to predict</h1>
-    <form action="">
-      <mat-form-field class="example-full-width">
-        <textarea matInput placeholder="Enter input data"></textarea>
-      </mat-form-field>
-      <button mat-fab class="upload__btn">
+    <form>
+      <div class="textarea">
+        <mat-form-field class="textarea__input">
+          <textarea
+            class="textarea__input-field"
+            name="unformattedTextarea"
+            [(ngModel)]="unformattedStringToPredict"
+            matInput
+            placeholder="Enter input data"
+          ></textarea>
+        </mat-form-field>
+      </div>
+      <button mat-fab class="upload__btn" (click)="predictSingleCase()">
         <mat-icon class="upload__btn-icon" svgIcon="predict"></mat-icon>
       </button>
     </form>

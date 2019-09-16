@@ -10,6 +10,8 @@ import { UploadComponent } from "./upload/upload.component";
 import { TeamComponent } from "./team/team.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { AnalysisComponent } from './analysis/analysis.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     UploadComponent,
     TeamComponent,
-    DashboardComponent
+    DashboardComponent,
+    AnalysisComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialsModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     AgGridModule.withComponents([])
   ],
   providers: [],

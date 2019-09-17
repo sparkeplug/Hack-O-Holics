@@ -1,4 +1,4 @@
-const API_URL = "http://b7d86c57.ngrok.io/api";
+const API_URL = "http://ffab2ee2.ngrok.io/api";
 const ENDPOINTS = {
   "bulk-upload": {
     endpoint: `${API_URL}/bulk_upload`,

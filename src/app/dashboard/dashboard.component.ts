@@ -68,6 +68,7 @@ export class DashboardComponent implements OnInit {
         headerName: "Business Description",
         field: "Business_Description",
         autoHeight: true,
+        pinned: 'left',
         cellStyle: { "white-space": "normal" }
       },
       {
